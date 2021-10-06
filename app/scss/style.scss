@@ -1,0 +1,745 @@
+@import 'vars';
+@import 'fonts';
+@import 'reset';
+@import 'global';
+@import 'libs';
+
+
+.wrapper{
+    overflow-x: hidden;
+}
+.header{
+    background-color: $bg;
+    &::after{
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 72px;
+        width: 50%;
+        background-color: $bg;
+    }
+    &__wrapper{
+        display: flex;
+        justify-content: space-between;
+    }
+    &__logo{
+        display: flex;
+        align-items: center;
+        & svg{
+            width: 30px;
+            margin: 0 10px;
+            path{
+                fill: $default;
+            }
+        }
+        &:hover svg path{
+            fill: $item;
+        }
+    }
+    &__logo-text{
+        @extend %TM-500;
+        font-size: 41px;
+        color: $white;
+        padding: 10px;
+    }
+    &__logo-first{
+        color: $bg;
+        background-color: $white;
+    }
+    &__logo-second{
+        border-top: 1px solid $white;
+        border-bottom: 1px solid $white;
+    }
+    &__menu{
+        background-color: $bg;
+        width: 50%;
+        position: relative;
+        &::before{
+            content: "";
+            top: 0;
+            left: -65px;
+            height: 72px;
+            width: 120px;
+            background-color: $bg;
+            clip-path: polygon(55% 0%, 0 100%, 55% 100%);
+            border-radius: 0 0 0 10px;
+            position: absolute;
+            z-index: 1;
+        }
+    }
+    &__menu-list{
+        display: flex;
+    }
+    &__menu-item{
+        padding: 0 30px;
+        z-index: 1;
+        position: relative;
+        &:first-child::after{
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 70px;
+            background: $white;
+            left: 0;
+            top: 0;
+            transform: rotate(29deg);
+        }
+        &::before{
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 70px;
+            background: $white;
+            right: -3px;
+            top: 0;
+            transform: rotate(29deg);
+        }
+        &:hover{
+            background-color: $white;
+            transform: skew(-29deg);
+            &:first-child::after,
+            &::before{
+                background-color: transparent;
+            }
+            & .header__menu-link{
+            color: $default;
+            transform: skew(0deg);
+            transition: all 0.3s linear;
+            }
+        }
+    }
+    &__menu-link{
+        height: 72px;
+        line-height: 72px;
+        color: $white;
+        font-size: 18px;
+        @extend %montserrat-600;
+        text-transform: uppercase;
+    }
+}
+
+.main{
+  margin-bottom: 120px;
+    &-wrapper{
+        display: flex;
+        justify-content: start;
+        height: 791px;
+    }
+    &-info{
+        width: 50%;
+    }
+    &-info__title{
+        @extend %montserrat-600;
+        color: $accent3;
+        text-shadow: 2px 2px 1px $default;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 30px;
+        margin: 0 10px;
+    }
+    &__pointer-red{
+        animation-duration: 2s;
+        animation-delay:1s;
+        top: 38%;
+        & path{
+            fill: $accent;
+        }
+    }
+    &__pointer-blue{
+        transform: rotate(180deg);
+        animation-duration: 2s;
+        bottom: 38%;
+        & path{
+            fill: $kyivstar;
+        }
+    }
+    &__pointer-blue,
+    &__pointer-red{
+        position: absolute;
+        left: 46%;
+        width: 50px;
+        height: 50px;
+        animation-name: blinker;
+        animation-iteration-count: infinite;
+        animation-timing-function: cubic-bezier(1.0,0,0,1.0);
+    }
+    &-info__title-text{
+        color: $bg;
+        color: $accent2;
+        text-shadow: 3px 2px 0px $soc;
+    }
+    &-info__group{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 100%;
+    }
+    &-info__img{
+        width: 46px;
+        height: 46px;
+    }
+    &-slider{
+        width: 50%;
+        position: relative;
+        margin: auto auto;
+    }
+}
+@keyframes blinker {
+    from { opacity: 1.0; }
+    to { opacity: 0.0; }
+    }
+// start
+
+.call {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    &__circle {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__circle-phone-box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 100px;
+        position: relative;
+        & img {
+            height: 50px;
+            }
+    }
+    &__svg{
+        transform: translate(2px, 21px) rotate(322deg);
+        height: 50px;
+        & path{
+            fill: $bg;
+        }
+    }
+    &__pulse-ring {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        position: absolute;
+        animation: pulsate infinite ease-in-out 2s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__pulse-ring-kyivstar{
+        border: 3px solid $kyivstar;
+    }
+    &__pulse-ring-vodafone{
+        border: 3px solid $accent;
+    }
+    &__medium-circle {
+        position: absolute;
+        width: 130px;
+        height: 130px;
+        border-radius: 100%;
+        background: transparent;
+        box-shadow: 2px 2px 4px rgba(0,0,0,0.5),
+        inset 2px 2px 4px rgba(0,0,0,.5);
+        animation: pulsate infinite ease-in-out 2s 0.3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__medium-circle-kyivstar{
+        border: 2px solid $kyivstar;
+    }
+    &__medium-circle-vodafone{
+        border: 2px solid $accent;
+    }
+    &__big-circle {
+        position: absolute;
+        width: 160px;
+        height: 160px;
+        border-radius: 100%;
+        background: transparent;
+        box-shadow: 2px 2px 4px rgba(0,0,0,0.5), inset 2px 2px 4px rgba(0,0,0,.5);
+        
+        animation: pulsate infinite ease-in-out 2s 0.6s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__big-circle-kyivstar{
+        border: 2px solid $kyivstar;
+    }
+    &__big-circle-vodafone{
+        border: 2px solid $accent;
+    }
+    &__huge-circle {
+        position: absolute;
+        width: 190px;
+        height: 190px;
+        border-radius: 100%;
+        background: transparent;
+        box-shadow: 2px 2px 4px rgba(0,0,0,0.5), inset 2px 2px 4px rgba(0,0,0,.5);
+        
+        animation: pulsate infinite ease-in-out 2s 0.9s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__huge-circle-kyivstar{
+        border: 2px solid $kyivstar;
+    }
+    &__huge-circle-vodafone{
+        border: 2px solid $accent;
+    }
+}
+@keyframes pulsate {
+    0% {
+        transform: scale(1, 1);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.3, 1.3);
+        opacity: 0;
+    }
+}
+// finish
+.slider{
+    &__item{
+        max-width: 570px;
+        background-color: $item;
+        padding: 35px 20px;
+        border-radius: 9px;
+    }
+    &__item-title{
+        font-size: 20px;
+        @extend %montserrat-600;
+        color: $default;
+        margin-bottom: 10px;
+        padding-right: 70px;
+    }
+    &__item-text{
+        @extend %montserrat-300;
+        margin-bottom: 25px;
+        display: inline-block;
+        padding-left: 20px;
+    }
+    &__item-ceil{
+        display: flex;
+        height: 64px;
+        line-height: 64px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    &__item-img{
+        width: 67px;
+        height: 67px;
+    }
+    &__read-more{
+        width: 225px;
+        height: 48px;
+        cursor: pointer;
+        margin-top: 50px;
+        background: $default;
+        color: $white;
+        display: block;
+        line-height: 48px;
+        text-align: left;
+        border-radius: 4px;
+        padding-left: 28px;
+        transition: all 0.3s linear;
+        position: relative;
+        &::after{
+            background-image: url("../images/arrow-right.svg");
+            content: '';
+            position: absolute;
+            right: 16px;
+            top: 20px;
+            width: 6px;
+            height: 11px;
+            transition: all .3s linear;
+        }
+        &:hover{
+            background-color: $accent;
+        }
+    }
+    & .slick-dots{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        bottom: 30px;
+        right: 50px;
+    }
+    & .slick-dots li{
+        list-style: none;
+        margin: 0 10px;
+        line-height: 1;
+        padding: 10px;
+        cursor: pointer;
+    }
+    & .slick-dots button{
+        font-size: 0;
+        width: 10px;
+        height: 10px;
+        background-color: $default;
+        border-radius: 50%;
+        padding: 0;
+        &:hover{
+            background-color: $accent;
+        }
+    }
+    & .slick-dots li.slick-active button{
+        background-color: $accent;
+    }
+}
+
+.footer{
+    background: $bg;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    &__wrapper{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &_text{
+        color:#fff;
+        font-weight: 600;
+    }
+    &__soc{
+        margin-top: 0;
+        margin-left: 0;
+        display: flex;
+    }
+    &__soc-item{
+        margin: 0 10px;
+    }
+    &__soc-link{
+        background-repeat: no-repeat;
+        display: block;
+        width: 48px;
+        height: 48px;
+        background-position: center;
+        background-color: $bg;
+        border-radius: 4px 4px 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & svg{
+            width: 36px;
+            height: 36px;
+        }
+    }
+    &__facebook{
+        svg path{
+            fill: $soc;
+        }
+    }
+    &__soc-item:hover .footer__facebook{
+        background-color: $facebook;
+        svg path{
+            fill: $white;
+        }
+    }
+    &__instagram{
+        svg path{
+            fill: $soc;
+        }
+    }
+    &__soc-item:hover .footer__instagram{
+        background-color: $item;
+        border-radius: 15px;
+        svg path{
+            fill: $instagram;
+        }
+    }
+    &__telegram{
+        svg path{
+            fill: $soc;
+        }
+    }
+    &__soc-item:hover .footer__telegram{
+        background-color: $telegram;
+        border-radius: 15px;
+        svg path{
+            fill: $white;
+        }
+    }
+    &__viber{
+        svg path{
+            fill: $soc;
+        }
+    }
+    &__soc-item:hover .footer__viber{
+        background-color: $viber;
+        svg path{
+            fill: $item;
+        }
+    }
+    &__youtube{
+        svg path{
+            fill: $soc;
+        }
+    }
+    &__soc-item:hover .footer__youtube{
+        background-color: $item;
+        border-radius: 8px;svg path{
+            fill: $youtube;
+        }
+    }
+    &__creator-link{
+        color: $default;
+        &:hover{
+            text-decoration: underline;
+            color: $white;
+        }
+    }
+}
+
+.header-alert{
+    padding: 30px 0;
+    background-color: $bg-alert;
+    &:hover .header-alert-first{
+        background-color: $bg;
+    }
+    &:hover .header-alert-second{
+        border-top: 1px solid $white;
+        border-bottom: 1px solid $white;
+    }
+    &-first{
+        background-color: $bg-alert;
+        color: $white;
+    }
+    &-second{
+        border-top: 1px solid transparent;
+        border-bottom: 1px solid transparent;
+    }
+    &__logo{
+        display: flex;
+        justify-content: center;
+    }
+    & .header-alert__svg path{
+        fill: #d6af15;
+    }
+}
+.alert{
+    background-color: $bg-alert;
+    &-layout{
+        width: calc(((100% - 1140px) / 2) + 1140px);
+        margin: 80px 0 0 auto;
+    }
+    &-layout-row{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        min-height: 100%;
+        max-width: 100%;
+    }
+    &-left{
+        display: flex;
+        min-height: 977px;
+        flex: 0 46.6666667%;
+        max-width: 46.6666667%;
+        background-color: transparent;
+        opacity: 1;
+        text-align-last: left;
+        max-height: 100%;
+        align-items: flex-start;
+    }
+    &-left-wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0px 50px;
+    }
+    &-left-inner{
+        flex: 1;
+        max-width: 100%;
+    }
+    &-left-icon{
+        height: 64px;
+        width: 64px;
+        margin: 0 auto 0 0;
+    }
+    &-left-svg{
+        fill: $svg-alert;
+        width: 100%;
+        height: 100%;
+    }
+    &-left-title{
+        margin: 20px 0 0;
+        font-size: 55px;
+        line-height: 1.1;
+        color: $white;
+    }
+    &-left-text{
+        @extend %montserrat-300;
+        letter-spacing: 2px;
+        line-height: 1.4;
+        font-size: 22px;
+        margin: 36px 0 0;
+        color: $white;
+        word-wrap: break-word;
+    }
+    &-left-soc{
+        display: flex;
+        min-height: 124px;
+        width: 166px;
+        white-space: nowrap;
+    }
+    &-right{
+        flex: 0 0 53.3333333%;
+        max-width: 53.3333333%;
+    }
+    &-right-inner{
+        flex: 1;
+        max-width: 100%;
+        height: 100%;
+    }
+    &-right-bg{
+        margin-bottom: 0;
+        height: 574px;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        object-fit: cover;
+        display: block;
+        background-size: cover;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+    }
+}
+
+.contacts{
+  margin-top: 9px;
+  &__title{
+    font-size: 36px;
+    font-weight: normal;
+    color: $contact2;
+    margin-bottom: 42px;
+    margin-bottom: 30px;
+    line-height: 36px;
+  }
+  &__info{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    padding-bottom: 40px;
+  }
+  &__text{
+    font-size: 14px;
+    line-height: 20px;
+    font-style: normal;
+    color: $default;
+    & mark{
+      background-color: transparent;
+      font-style: italic;
+    }
+  }
+  &__link:hover{
+    border-bottom: 1px solid $accent;
+  }
+  &__googlemap{
+    margin-top: 45px;
+  }
+  &-left{
+  width: 37%;
+    &__alert{
+      font-size: 20px;
+      line-height: 20px;
+      color: $contact2;
+      display: block;
+      margin: 20px 0 10px 0;
+    }
+  }
+  &-right{
+    width: 50%;
+    & .contacts__title{
+      text-align: center;
+    }
+    &__input{
+      background-color: rgba(0,0,0,.1);
+      border: 1px solid #f0eeee;
+      width: 33%;
+      padding: 2px 10px;
+      color: $white;
+      &:focus{
+        outline: 1px solid $bg;
+        border: 1px solid transparent;
+        background-color: rgba(0,0,0,.1);
+        color: $white;
+      }
+    }
+    &__inner{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    &__textarea{
+      height: 221px;
+      width: 100%;
+      font-size: 14px;
+      border: 1px solid #f0eeee;
+      color: $white;
+      padding: 23px 31px;
+      background-color: rgba(0,0,0,.2);
+      &:focus{
+        outline: 1px solid $bg;
+        border: 1px solid transparent;
+        background-color: rgba(0,0,0,.2);
+        color: $white;
+      }
+    }
+    &__btns{
+      text-align: right;
+    }
+    &__btn{
+      width: 120px;
+      height: 38px;
+      background: $default;
+      font-size: 14px;
+      color: #fff;
+      border: 0;
+      line-height: 38px;
+      margin-top: 23px;
+      cursor: pointer;
+      transition: .2s;
+      margin-left: 3px;
+      border-radius: 4px;
+      transition: all 0.3s linear;
+      &:hover{
+        background-color: $accent;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+@import 'media';
+
+
+
+
+
+
+
+
+
